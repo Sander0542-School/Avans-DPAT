@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avans.DPAT.Sudoku.Persisten
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D73D7E2C-1E2A-41E7-B2FE-B827D74ED862}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avans.DPAT.Sudoku.Game", "src\Avans.DPAT.Sudoku.Game\Avans.DPAT.Sudoku.Game.csproj", "{3C763E30-42DE-4FBB-8824-D38ABA4DF61D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,8 +16,13 @@ Global
 		{A2FF2F73-E81C-4C78-BADE-9AF7A4981A71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2FF2F73-E81C-4C78-BADE-9AF7A4981A71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2FF2F73-E81C-4C78-BADE-9AF7A4981A71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C763E30-42DE-4FBB-8824-D38ABA4DF61D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C763E30-42DE-4FBB-8824-D38ABA4DF61D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C763E30-42DE-4FBB-8824-D38ABA4DF61D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C763E30-42DE-4FBB-8824-D38ABA4DF61D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A2FF2F73-E81C-4C78-BADE-9AF7A4981A71} = {D73D7E2C-1E2A-41E7-B2FE-B827D74ED862}
+		{3C763E30-42DE-4FBB-8824-D38ABA4DF61D} = {D73D7E2C-1E2A-41E7-B2FE-B827D74ED862}
 	EndGlobalSection
 EndGlobal
