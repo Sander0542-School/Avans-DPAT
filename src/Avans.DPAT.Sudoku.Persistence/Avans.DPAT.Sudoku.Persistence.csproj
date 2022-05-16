@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Avans.DPAT.Sudoku.Game\Avans.DPAT.Sudoku.Game.csproj" />
+    </ItemGroup>
+
 </Project>
