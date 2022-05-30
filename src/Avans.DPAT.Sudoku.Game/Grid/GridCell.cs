@@ -5,10 +5,26 @@ namespace Avans.DPAT.Sudoku.Game.Grid;
 
 public class GridCell : IGridComponent, ICell
 {
-    private readonly Point _position;
+    public Point Position { get; }
 
-    public GridCell(Point position)
+    public int GridId { get; }
+
+    public int Value { get; }
+
+    public int? Hint { get; set; } = null;
+
+    public GridCell(Point location, int gridId, int value)
     {
-        _position = position;
+        Position = location;
+        GridId = gridId;
+        Value = value;
+    }
+
+    public void Flatten(GridCell[,] grid)
+    {
+        if (grid[Position.X, Position.Y] == null)
+        {
+            grid[Position.X, Position.Y] = this;
+        }
     }
 }
