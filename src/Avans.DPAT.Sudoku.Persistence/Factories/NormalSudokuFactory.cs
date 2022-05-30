@@ -4,9 +4,11 @@ namespace Avans.DPAT.Sudoku.Persistence.Factories;
 
 public class NormalSudokuFactory : BaseNormalSudokuFactory
 {
-    public override Game.Sudoku CreateSudoku(File file)
+    protected override int Build(File file)
     {
-        throw new NotImplementedException();
+        AddSudoku(file.Contents);
+
+        return (int)Math.Sqrt(file.Contents.Length);
     }
 
     public override bool Supports(File file)

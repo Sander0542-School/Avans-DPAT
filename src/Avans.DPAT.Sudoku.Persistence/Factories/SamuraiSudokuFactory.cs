@@ -4,7 +4,7 @@ namespace Avans.DPAT.Sudoku.Persistence.Factories;
 
 public class SamuraiSudokuFactory : BaseNormalSudokuFactory
 {
-    public override Game.Sudoku CreateSudoku(File file)
+    protected override int Build(File file)
     {
         throw new NotImplementedException();
     }
