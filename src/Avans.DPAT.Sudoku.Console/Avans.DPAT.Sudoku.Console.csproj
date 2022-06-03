@@ -11,4 +11,71 @@
       <ProjectReference Include="..\Avans.DPAT.Sudoku.Persistence\Avans.DPAT.Sudoku.Persistence.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Puzzles" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Puzzles\puzzle.4x4" />
+      <Content Include="Puzzles\puzzle.4x4">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Puzzles\puzzle.6x6" />
+      <Content Include="Puzzles\puzzle.6x6">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Puzzles\puzzle.9x9" />
+      <Content Include="Puzzles\puzzle.9x9">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Puzzles\puzzle.jigsaw" />
+      <Content Include="Puzzles\puzzle.jigsaw">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Puzzles\puzzle.samurai" />
+      <Content Include="Puzzles\puzzle.samurai">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Puzzles\puzzle2.4x4" />
+      <Content Include="Puzzles\puzzle2.4x4">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Puzzles\puzzle2.6x6" />
+      <Content Include="Puzzles\puzzle2.6x6">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Puzzles\puzzle2.9x9" />
+      <Content Include="Puzzles\puzzle2.9x9">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Puzzles\puzzle2.jigsaw" />
+      <Content Include="Puzzles\puzzle2.jigsaw">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Puzzles\puzzle2.samurai" />
+      <Content Include="Puzzles\puzzle2.samurai">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Puzzles\puzzle3.4x4" />
+      <Content Include="Puzzles\puzzle3.4x4">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Puzzles\puzzle3.6x6" />
+      <Content Include="Puzzles\puzzle3.6x6">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Puzzles\puzzle3.9x9" />
+      <Content Include="Puzzles\puzzle3.9x9">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Puzzles\puzzle3.jigsaw" />
+      <Content Include="Puzzles\puzzle3.jigsaw">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Puzzles\puzzle3.samurai" />
+      <Content Include="Puzzles\puzzle3.samurai">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>
