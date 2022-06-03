@@ -29,10 +29,15 @@ public class GridCell : IGridComponent, ICell
     {
         if (obj is GridCell other)
         {
-            return other.GridId == GridId && other.Position == Position;
+            return other.Position == Position && other.Value == Value;
         }
 
         return base.Equals(obj);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Position, Value);
     }
 
     public override string ToString()

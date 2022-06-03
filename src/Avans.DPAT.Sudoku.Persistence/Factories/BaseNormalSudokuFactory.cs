@@ -1,5 +1,6 @@
 ﻿using Avans.DPAT.Sudoku.Game.Grid;
 using Avans.DPAT.Sudoku.Persistence.Builders;
+using Avans.DPAT.Sudoku.Persistence.Extensions;
 using Avans.DPAT.Sudoku.Persistence.Utils;
 using File=Avans.DPAT.Sudoku.Persistence.Models.File;
 
@@ -8,10 +9,12 @@ namespace Avans.DPAT.Sudoku.Persistence.Factories;
 public abstract class BaseNormalSudokuFactory : ISudokuFactory
 {
     private readonly SudokuBuilder _sudokuBuilder;
+    private List<GridCell> _cells;
 
     protected BaseNormalSudokuFactory()
     {
         _sudokuBuilder = new();
+        _cells = new();
     }
 
     public abstract bool Supports(File file);
@@ -50,7 +53,7 @@ public abstract class BaseNormalSudokuFactory : ISudokuFactory
                 var yScale = y / width;
                 var groupId = xScale * height + yScale;
 
-                var cell = new GridCell(new(y + offsetX, x + offsetY), groupId, value);
+                var cell = _cells.GetOrAdd(new(y + offsetX, x + offsetY), groupId, value);
 
                 subBuilders[0][x].AddLeaf(cell);
                 subBuilders[1][y].AddLeaf(cell);
