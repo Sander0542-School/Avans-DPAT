@@ -32,16 +32,7 @@ public abstract class BaseNormalSudokuFactory : ISudokuFactory
         var length = (int)Math.Sqrt(line.Length);
         var (width, height) = SizeUtil.CalcWithHeight(length);
 
-        var subBuilders = new Dictionary<int, List<GridBuilder>>(3);
-        for (var i = 0; i < 3; i++)
-        {
-            var builders = new List<GridBuilder>(length);
-            for (var j = 0; j < builders.Capacity; j++)
-            {
-                builders.Add(new());
-            }
-            subBuilders.Add(i, builders);
-        }
+        var subBuilders = GridBuilder.CreateSubBuilders(length);
 
         for (var x = 0; x < length; x++)
         {
