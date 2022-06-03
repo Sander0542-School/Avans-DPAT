@@ -6,14 +6,16 @@ namespace Avans.DPAT.Sudoku.Game;
 public class Sudoku
 {
     public readonly int Numbers;
+    public readonly int Length;
 
     public readonly GridComposite Grid;
 
     public readonly ICell[,] Cells;
 
-    public Sudoku(int numbers, GridComposite grid)
+    public Sudoku(int numbers, int length, GridComposite grid)
     {
         Numbers = numbers;
+        Length = length;
         Grid = grid;
 
         var cells = grid.ToList().OfType<ICell>().Distinct().ToList();

@@ -1,14 +1,18 @@
-﻿using File=Avans.DPAT.Sudoku.Persistence.Models.File;
+﻿using Avans.DPAT.Sudoku.Persistence.Extensions;
+using File=Avans.DPAT.Sudoku.Persistence.Models.File;
 
 namespace Avans.DPAT.Sudoku.Persistence.Factories;
 
 public class NormalSudokuFactory : BaseNormalSudokuFactory
 {
-    protected override int Build(File file)
+    protected override (int, int) Build(File file)
     {
-        AddSudoku(file.Contents);
+        var line = file.Lines()[0];
+        AddSudoku(line);
 
-        return (int)Math.Sqrt(file.Contents.Length);
+        var length = (int)Math.Sqrt(line.Length);
+
+        return (length, length);
     }
 
     public override bool Supports(File file)

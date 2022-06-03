@@ -1,5 +1,4 @@
-﻿using Avans.DPAT.Sudoku.Game.Grid;
-using Avans.DPAT.Sudoku.Persistence.Factories;
+﻿using Avans.DPAT.Sudoku.Persistence.Factories;
 using Avans.DPAT.Sudoku.Persistence.Loaders;
 
 var fileLoader = new FileSystemFileLoader();
@@ -12,7 +11,7 @@ for (var x = 0; x < sudoku.Cells.GetLength(0); x++)
 {
     for (var y = 0; y < sudoku.Cells.GetLength(1); y++)
     {
-        var value = sudoku.Cells[x, y].Value;
+        var value = sudoku.Cells[x, y]?.Value;
         Console.Write(value.HasValue ? value.Value.ToString() : " ");
     }
     Console.WriteLine();
