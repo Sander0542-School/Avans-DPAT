@@ -33,6 +33,7 @@ public abstract class BaseNormalSudokuFactory : ISudokuFactory
         var (width, height) = SizeUtil.CalcWithHeight(length);
 
         var subBuilders = GridBuilder.CreateSubBuilders(length);
+        _sudokuBuilder.AddSubGrids(subBuilders);
 
         for (var x = 0; x < length; x++)
         {
@@ -51,7 +52,5 @@ public abstract class BaseNormalSudokuFactory : ISudokuFactory
                 subBuilders[2][groupId].AddLeaf(cell);
             }
         }
-
-        _sudokuBuilder.AddGrid(new GridBuilder().AddGrids(subBuilders.SelectMany(pair => pair.Value)));
     }
 }
