@@ -2,7 +2,5 @@
 
 public interface IGridComponent
 {
-    void Flatten(GridCell[,] grid);
-    
     IEnumerable<IGridComponent> ToList();
 }

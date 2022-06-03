@@ -20,21 +20,23 @@ public class GridCell : IGridComponent, ICell
         Value = value == 0 ? null : value;
     }
 
-    public void Flatten(GridCell[,] grid)
-    {
-        if (grid[Position.X, Position.Y] == null)
-        {
-            grid[Position.X, Position.Y] = this;
-        }
-    }
-
-    public void ToList(List<IGridComponent> list)
-    {
-        list.Add(this);
-    }
-
     public IEnumerable<IGridComponent> ToList()
     {
         return new List<IGridComponent> { this };
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is GridCell other)
+        {
+            return other.GridId == GridId && other.Position == Position;
+        }
+
+        return base.Equals(obj);
+    }
+
+    public override string ToString()
+    {
+        return $"GridCell({Position.X}, {Position.Y})[{Value}]";
     }
 }

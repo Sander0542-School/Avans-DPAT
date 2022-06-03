@@ -11,14 +11,6 @@ public class GridComposite : IGridComponent
         _children = children;
     }
 
-    public void Flatten(GridCell[,] grid)
-    {
-        foreach (var component in _children)
-        {
-            component.Flatten(grid);
-        }
-    }
-
     public IEnumerable<IGridComponent> ToList()
     {
         return _children.SelectMany(component => component.ToList());
