@@ -6,6 +6,6 @@ public static class FileExtensions
 {
     public static string[] Lines(this File file)
     {
-        return file.Contents.Split('\n');
+        return file.Contents.Split(Environment.NewLine);
     }
 }

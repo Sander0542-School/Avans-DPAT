@@ -27,7 +27,7 @@ public class SudokuBuilder
         return this;
     }
 
-    public Game.Sudoku Build(int length)
+    public Game.Sudoku Build(int numbers, int length)
     {
         var gridBuilder = new GridBuilder();
         if (_grids.Count == 1)
@@ -39,6 +39,6 @@ public class SudokuBuilder
             gridBuilder.AddGrids(_grids);
         }
 
-        return new(length, gridBuilder.Build());
+        return new(numbers, length, gridBuilder.Build());
     }
 }
