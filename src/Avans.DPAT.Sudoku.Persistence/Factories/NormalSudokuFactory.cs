@@ -1,4 +1,5 @@
 ﻿using Avans.DPAT.Sudoku.Persistence.Extensions;
+using Avans.DPAT.Sudoku.Persistence.Utils;
 using File=Avans.DPAT.Sudoku.Persistence.Models.File;
 
 namespace Avans.DPAT.Sudoku.Persistence.Factories;
@@ -10,7 +11,7 @@ public class NormalSudokuFactory : BaseNormalSudokuFactory
         var line = file.Lines()[0];
         AddSudoku(line);
 
-        var length = (int)Math.Sqrt(line.Length);
+        var length = SizeUtil.CalcLength(line.Length);
 
         return (length, length);
     }

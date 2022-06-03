@@ -29,7 +29,7 @@ public abstract class BaseNormalSudokuFactory : ISudokuFactory
 
     public void AddSudoku(string line, int offsetX = 0, int offsetY = 0)
     {
-        var length = (int)Math.Sqrt(line.Length);
+        var length = SizeUtil.CalcLength(line.Length);
         var (width, height) = SizeUtil.CalcWithHeight(length);
 
         var subBuilders = GridBuilder.CreateSubBuilders(length);
