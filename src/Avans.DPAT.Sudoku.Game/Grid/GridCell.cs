@@ -7,16 +7,13 @@ public class GridCell : IGridComponent, ICell
 {
     public Point Position { get; }
 
-    public int GridId { get; }
-
     public int? Value { get; }
 
     public int? Hint { get; set; } = null;
 
-    public GridCell(Point location, int gridId, int value)
+    public GridCell(Point location, int value)
     {
         Position = location;
-        GridId = gridId;
         Value = value == 0 ? null : value;
     }
 

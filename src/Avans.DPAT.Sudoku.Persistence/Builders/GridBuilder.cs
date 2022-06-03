@@ -1,20 +1,15 @@
-﻿using System.Drawing;
-using Avans.DPAT.Sudoku.Game.Grid;
+﻿using Avans.DPAT.Sudoku.Game.Grid;
 using Avans.DPAT.Sudoku.Game.Grid.Common;
 
 namespace Avans.DPAT.Sudoku.Persistence.Builders;
 
 public class GridBuilder
 {
-    private readonly int _gridId;
-
     private readonly List<GridBuilder> _builders;
-    private readonly List<Func<int, IGridComponent>> _leaves;
+    private readonly List<IGridComponent> _leaves;
 
-    public GridBuilder(int gridId)
+    public GridBuilder()
     {
-        _gridId = gridId;
-
         _builders = new();
         _leaves = new();
     }
@@ -25,10 +20,17 @@ public class GridBuilder
 
         return this;
     }
-
-    public GridBuilder AddCell(Point location, int value)
+    
+    public GridBuilder AddGrids(IEnumerable<GridBuilder> builders)
     {
-        _leaves.Add(gridId => new GridCell(location, gridId, value));
+        _builders.AddRange(builders);
+
+        return this;
+    }
+
+    public GridBuilder AddLeaf(IGridComponent leaf)
+    {
+        _leaves.Add(leaf);
 
         return this;
     }
@@ -36,7 +38,7 @@ public class GridBuilder
     public GridComposite Build()
     {
         var children = new List<IGridComponent>(_builders.Select(builder => builder.Build()));
-        children.AddRange(_leaves.Select(func => func(_gridId)));
+        children.AddRange(_leaves);
 
         return new(children);
     }

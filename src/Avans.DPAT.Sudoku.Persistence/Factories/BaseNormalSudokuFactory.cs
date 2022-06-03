@@ -1,17 +1,17 @@
-﻿using Avans.DPAT.Sudoku.Persistence.Builders;
+﻿using Avans.DPAT.Sudoku.Game.Grid;
+using Avans.DPAT.Sudoku.Persistence.Builders;
+using Avans.DPAT.Sudoku.Persistence.Utils;
 using File=Avans.DPAT.Sudoku.Persistence.Models.File;
 
 namespace Avans.DPAT.Sudoku.Persistence.Factories;
 
 public abstract class BaseNormalSudokuFactory : ISudokuFactory
 {
-    private readonly GridBuilder _gridBuilder;
-    private int _gridId;
+    private readonly SudokuBuilder _sudokuBuilder;
 
     protected BaseNormalSudokuFactory()
     {
-        _gridBuilder = new(0);
-        _gridId = 0;
+        _sudokuBuilder = new();
     }
 
     public abstract bool Supports(File file);
@@ -20,26 +20,23 @@ public abstract class BaseNormalSudokuFactory : ISudokuFactory
 
     public Game.Sudoku CreateSudoku(File file)
     {
-        var numbers = Build(file);
-        return new(numbers, _gridBuilder.Build());
+        return _sudokuBuilder.Build(Build(file));
     }
 
     public void AddSudoku(string line)
     {
         var length = (int)Math.Sqrt(line.Length);
+        var (width, height) = SizeUtil.CalcWithHeight(length);
 
-        var (width, height) = length switch
+        var subBuilders = new Dictionary<int, List<GridBuilder>>(3);
+        for (var i = 0; i < 3; i++)
         {
-            4 => (2, 2),
-            6 => (3, 2),
-            9 => (3, 3),
-            _ => throw new ArgumentOutOfRangeException(nameof(length), $"The length of the sudoku must be 4, 6, or 9. It is {length}")
-        };
-
-        var subBuilders = new List<GridBuilder>();
-        for (var i = 0; i < length; i++)
-        {
-            subBuilders.Add(new(_gridId++));
+            var builders = new List<GridBuilder>(length);
+            for (var j = 0; j < builders.Capacity; j++)
+            {
+                builders.Add(new());
+            }
+            subBuilders.Add(i, builders);
         }
 
         for (var row = 0; row < length; row++)
@@ -48,16 +45,19 @@ public abstract class BaseNormalSudokuFactory : ISudokuFactory
             {
                 var value = int.Parse(line[row * length + col].ToString());
 
+                var cell = new GridCell(new(row, col), value);
+
                 var rowOffset = row / height;
                 var colOffset = col / width;
+                var groupId = rowOffset * height + colOffset;
 
-                subBuilders[rowOffset * height + colOffset].AddCell(new(row, col), value);
+                _sudokuBuilder.AddCell(cell);
+                subBuilders[0][row].AddLeaf(cell);
+                subBuilders[1][col].AddLeaf(cell);
+                subBuilders[2][groupId].AddLeaf(cell);
             }
         }
 
-        foreach (var subBuilder in subBuilders)
-        {
-            _gridBuilder.AddGrid(subBuilder);
-        }
+        _sudokuBuilder.AddGrid(new GridBuilder().AddGrids(subBuilders.SelectMany(pair => pair.Value)));
     }
 }
