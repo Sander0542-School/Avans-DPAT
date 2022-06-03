@@ -9,7 +9,7 @@ namespace Avans.DPAT.Sudoku.Persistence.Factories;
 public abstract class BaseNormalSudokuFactory : ISudokuFactory
 {
     private readonly SudokuBuilder _sudokuBuilder;
-    private List<GridCell> _cells;
+    private readonly List<GridCell> _cells;
 
     protected BaseNormalSudokuFactory()
     {
