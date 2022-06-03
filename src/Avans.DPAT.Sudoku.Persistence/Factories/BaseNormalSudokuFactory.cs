@@ -45,13 +45,12 @@ public abstract class BaseNormalSudokuFactory : ISudokuFactory
             {
                 var value = int.Parse(line[row * length + col].ToString());
 
-                var cell = new GridCell(new(row, col), value);
-
                 var rowOffset = row / height;
                 var colOffset = col / width;
                 var groupId = rowOffset * height + colOffset;
 
-                _sudokuBuilder.AddCell(cell);
+                var cell = new GridCell(new(row, col), groupId, value);
+
                 subBuilders[0][row].AddLeaf(cell);
                 subBuilders[1][col].AddLeaf(cell);
                 subBuilders[2][groupId].AddLeaf(cell);

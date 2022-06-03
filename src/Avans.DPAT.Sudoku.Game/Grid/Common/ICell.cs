@@ -6,6 +6,8 @@ public interface ICell
 {
     public Point Position { get; }
 
+    public int GridId { get; }
+
     public int? Value { get; }
 
     public int? Hint { get; set; }

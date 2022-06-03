@@ -8,14 +8,11 @@ var file = fileLoader.Load("Puzzles/puzzle.9x9");
 var factory = new SudokuFactory();
 var sudoku = factory.CreateSudoku(file);
 
-var cells = new GridCell[sudoku.Numbers, sudoku.Numbers];
-sudoku.Grid.Flatten(cells);
-
-for (var x = 0; x < cells.GetLength(0); x++)
+for (var x = 0; x < sudoku.Cells.GetLength(0); x++)
 {
-    for (var y = 0; y < cells.GetLength(1); y++)
+    for (var y = 0; y < sudoku.Cells.GetLength(1); y++)
     {
-        var value = cells[x, y].Value;
+        var value = sudoku.Cells[x, y].Value;
         Console.Write(value.HasValue ? value.Value.ToString() : " ");
     }
     Console.WriteLine();

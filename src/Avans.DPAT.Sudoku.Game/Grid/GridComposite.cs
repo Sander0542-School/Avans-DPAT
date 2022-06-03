@@ -18,4 +18,9 @@ public class GridComposite : IGridComponent
             component.Flatten(grid);
         }
     }
+
+    public IEnumerable<IGridComponent> ToList()
+    {
+        return _children.SelectMany(component => component.ToList());
+    }
 }

@@ -7,13 +7,16 @@ public class GridCell : IGridComponent, ICell
 {
     public Point Position { get; }
 
+    public int GridId { get; }
+
     public int? Value { get; }
 
     public int? Hint { get; set; } = null;
 
-    public GridCell(Point location, int value)
+    public GridCell(Point location, int gridId, int value)
     {
         Position = location;
+        GridId = gridId;
         Value = value == 0 ? null : value;
     }
 
@@ -23,5 +26,15 @@ public class GridCell : IGridComponent, ICell
         {
             grid[Position.X, Position.Y] = this;
         }
+    }
+
+    public void ToList(List<IGridComponent> list)
+    {
+        list.Add(this);
+    }
+
+    public IEnumerable<IGridComponent> ToList()
+    {
+        return new List<IGridComponent> { this };
     }
 }
