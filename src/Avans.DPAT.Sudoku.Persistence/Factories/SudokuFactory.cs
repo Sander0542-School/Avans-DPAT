@@ -13,7 +13,7 @@ public class SudokuFactory : ISudokuFactory
             .SelectMany(assembly => assembly.GetTypes())
             .Where(type => typeof(ISudokuFactory).IsAssignableFrom(type) && GetType() != type && !type.IsInterface && !type.IsAbstract);
 
-        _factories = factories.Select(factory => (ISudokuFactory)Activator.CreateInstance(factory));
+        _factories = factories.Select(factory => (ISudokuFactory)Activator.CreateInstance(factory)!);
     }
 
     public Game.Sudoku CreateSudoku(File file)

@@ -15,13 +15,13 @@ public abstract class BaseNormalSudokuFactory : ISudokuFactory
     }
 
     public abstract bool Supports(File file);
-    
+
     protected abstract int Build(File file);
 
     public Game.Sudoku CreateSudoku(File file)
     {
         var numbers = Build(file);
-        return Game.Sudoku(numbers, _gridBuilder.Build());
+        return new(numbers, _gridBuilder.Build());
     }
 
     public void AddSudoku(string line)

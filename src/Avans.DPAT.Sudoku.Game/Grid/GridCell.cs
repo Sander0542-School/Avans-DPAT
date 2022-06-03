@@ -9,7 +9,7 @@ public class GridCell : IGridComponent, ICell
 
     public int GridId { get; }
 
-    public int Value { get; }
+    public int? Value { get; }
 
     public int? Hint { get; set; } = null;
 
@@ -17,7 +17,7 @@ public class GridCell : IGridComponent, ICell
     {
         Position = location;
         GridId = gridId;
-        Value = value;
+        Value = value == 0 ? null : value;
     }
 
     public void Flatten(GridCell[,] grid)
