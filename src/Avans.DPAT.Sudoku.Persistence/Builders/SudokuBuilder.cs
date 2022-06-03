@@ -20,6 +20,13 @@ public class SudokuBuilder
         return this;
     }
 
+    public SudokuBuilder AddSubGrids<T>(Dictionary<T, List<GridBuilder>> subGrids)
+    {
+        _grids.AddRange(subGrids.SelectMany(pair => pair.Value));
+
+        return this;
+    }
+
     public SudokuBuilder AddCell(ICell cell)
     {
         _cells.Add(cell);

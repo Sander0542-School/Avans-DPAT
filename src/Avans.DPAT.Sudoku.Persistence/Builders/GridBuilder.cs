@@ -20,7 +20,7 @@ public class GridBuilder
 
         return this;
     }
-    
+
     public GridBuilder AddGrids(IEnumerable<GridBuilder> builders)
     {
         _builders.AddRange(builders);
@@ -41,5 +41,20 @@ public class GridBuilder
         children.AddRange(_leaves);
 
         return new(children);
+    }
+
+    public static Dictionary<int, List<GridBuilder>> CreateSubBuilders(int amount)
+    {
+        var subBuilders = new Dictionary<int, List<GridBuilder>>(3);
+        for (var i = 0; i < 3; i++)
+        {
+            var builders = new List<GridBuilder>(amount);
+            for (var j = 0; j < builders.Capacity; j++)
+            {
+                builders.Add(new());
+            }
+            subBuilders.Add(i, builders);
+        }
+        return subBuilders;
     }
 }

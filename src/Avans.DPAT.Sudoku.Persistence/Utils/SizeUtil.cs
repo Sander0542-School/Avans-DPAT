@@ -12,4 +12,9 @@ public static class SizeUtil
             _ => throw new ArgumentOutOfRangeException(nameof(length), $"The length of the sudoku must be 4, 6, or 9. It is {length}")
         };
     }
+
+    public static int CalcLength(int parts)
+    {
+        return (int)Math.Sqrt(parts);
+    }
 }
