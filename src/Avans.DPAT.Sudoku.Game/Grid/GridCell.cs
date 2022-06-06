@@ -13,11 +13,14 @@ public class GridCell : IGridComponent, ICell
 
     public int? Hint { get; set; } = null;
 
+    public bool Final { get; }
+
     public GridCell(Point location, int gridId, int value)
     {
         Position = location;
         GridId = gridId;
         Value = value == 0 ? null : value;
+        Final = value != 0;
     }
 
     public IEnumerable<IGridComponent> ToList()
