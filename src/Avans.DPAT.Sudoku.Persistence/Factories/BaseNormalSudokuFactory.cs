@@ -35,20 +35,20 @@ public abstract class BaseNormalSudokuFactory : ISudokuFactory
         var subBuilders = GridBuilder.CreateSubBuilders(length);
         _sudokuBuilder.AddSubGrids(subBuilders);
 
-        for (var x = 0; x < length; x++)
+        for (var y = 0; y < length; y++)
         {
-            for (var y = 0; y < length; y++)
+            for (var x = 0; x < length; x++)
             {
-                var value = int.Parse(line[x * length + y].ToString());
+                var value = int.Parse(line[y * length + x].ToString());
 
-                var xScale = x / height;
-                var yScale = y / width;
-                var groupId = xScale * height + yScale;
+                var yScale = y / height;
+                var xScale = x / width;
+                var groupId = yScale * height + xScale;
 
-                var cell = _cells.GetOrAdd(new(y + offsetX, x + offsetY), groupId, value);
+                var cell = _cells.GetOrAdd(new(x + offsetX, y + offsetY), groupId, value);
 
-                subBuilders[0][x].AddLeaf(cell);
-                subBuilders[1][y].AddLeaf(cell);
+                subBuilders[0][y].AddLeaf(cell);
+                subBuilders[1][x].AddLeaf(cell);
                 subBuilders[2][groupId].AddLeaf(cell);
             }
         }
