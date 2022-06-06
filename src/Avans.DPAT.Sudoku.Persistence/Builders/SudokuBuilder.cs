@@ -20,7 +20,7 @@ public class SudokuBuilder
         return this;
     }
 
-    public SudokuBuilder AddSubGrids<T>(Dictionary<T, List<GridBuilder>> subGrids)
+    public SudokuBuilder AddSubGrids<T>(Dictionary<T, List<GridBuilder>> subGrids) where T : notnull
     {
         _grids.AddRange(subGrids.SelectMany(pair => pair.Value));
 
