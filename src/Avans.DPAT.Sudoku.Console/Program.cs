@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Avans.DPAT.Sudoku.Persistence.Factories;
 using Avans.DPAT.Sudoku.Persistence.Loaders;
 
 Console.OutputEncoding = Encoding.UTF8;
