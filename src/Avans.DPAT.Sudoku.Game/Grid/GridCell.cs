@@ -55,6 +55,6 @@ public class GridCell : IGridComponent, ICell
 
     public override string ToString()
     {
-        return $"GridCell({Position.X}, {Position.Y})[{Value}]";
+        return $"GridCell({Position.X},{Position.Y})[{Value}]";
     }
 }
