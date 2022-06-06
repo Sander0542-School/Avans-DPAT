@@ -1,5 +1,7 @@
-﻿using Avans.DPAT.Sudoku.Persistence.Factories;
+﻿using System.Text;
 using Avans.DPAT.Sudoku.Persistence.Loaders;
+
+Console.OutputEncoding = Encoding.UTF8;
 
 var fileLoader = new FileSystemFileLoader();
 var file = fileLoader.Load("Puzzles/puzzle.9x9");
