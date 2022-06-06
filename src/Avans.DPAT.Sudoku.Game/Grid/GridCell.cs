@@ -28,6 +28,16 @@ public class GridCell : IGridComponent, ICell
         return new List<IGridComponent> { this };
     }
 
+    public bool IsValid(Point point, int number)
+    {
+        return true;
+    }
+
+    public bool Contains(Point point)
+    {
+        return point == Position;
+    }
+
     public override bool Equals(object? obj)
     {
         if (obj is GridCell other)
@@ -45,6 +55,6 @@ public class GridCell : IGridComponent, ICell
 
     public override string ToString()
     {
-        return $"GridCell({Position.X}, {Position.Y})[{Value}]";
+        return $"GridCell({Position.X},{Position.Y})[{Value}]";
     }
 }
