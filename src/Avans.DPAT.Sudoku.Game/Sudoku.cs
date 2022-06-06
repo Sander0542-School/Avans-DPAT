@@ -26,7 +26,7 @@ public class Sudoku
         Cells = new ICell[maxX + 1, maxY + 1];
         foreach (var cell in cells)
         {
-            Cells[cell.Position.X, cell.Position.Y] = cell;
+            Cells[cell.Position.Y, cell.Position.X] = cell;
         }
     }
 }
