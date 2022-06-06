@@ -10,5 +10,7 @@ public interface ICell
 
     public int? Value { get; }
 
+    public bool Final { get; }
+
     public int? Hint { get; set; }
 }
