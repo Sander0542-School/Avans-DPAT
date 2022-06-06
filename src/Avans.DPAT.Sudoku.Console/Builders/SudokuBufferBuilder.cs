@@ -7,7 +7,7 @@ namespace Avans.DPAT.Sudoku.Console.Builders;
 
 public class SudokuBufferBuilder
 {
-    private const string HorizontalSeparator = "-";
+    private const string HorizontalSeparator = "―";
     private const string VerticalSeparator = "|";
 
     private readonly string[,] _buffer;
