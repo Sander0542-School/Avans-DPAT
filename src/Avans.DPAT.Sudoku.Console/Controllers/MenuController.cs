@@ -31,7 +31,7 @@ public class MenuController : IController
         }
         else if (key == ConsoleKey.S)
         {
-            if (string.IsNullOrWhiteSpace(_model.SudokuPath))
+            if (!string.IsNullOrWhiteSpace(_model.SudokuPath))
             {
                 try
                 {

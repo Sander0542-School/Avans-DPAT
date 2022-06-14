@@ -7,7 +7,7 @@ public class MenuModel
 
     public MenuModel()
     {
-        SudokuPath = "Puzzles/puzzle2.9x9";
+        SudokuPath = "Puzzles/puzzle.9x9";
         ErrorMessage = "";
     }
 }
