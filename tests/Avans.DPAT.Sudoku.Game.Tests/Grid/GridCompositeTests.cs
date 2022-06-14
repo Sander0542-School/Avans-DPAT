@@ -4,7 +4,7 @@ using Avans.DPAT.Sudoku.Game.Grid;
 using Avans.DPAT.Sudoku.Game.Grid.Common;
 using Xunit;
 
-namespace Avans.DPAT.Sudoku.Game.Tests;
+namespace Avans.DPAT.Sudoku.Game.Tests.Grid;
 
 public class GridCompositeTests
 {

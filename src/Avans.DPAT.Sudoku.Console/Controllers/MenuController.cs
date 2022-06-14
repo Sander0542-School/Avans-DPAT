@@ -3,7 +3,7 @@ using Avans.DPAT.Sudoku.Console.Views;
 using Avans.DPAT.Sudoku.Persistence.Factories;
 using Avans.DPAT.Sudoku.Persistence.Loaders;
 
-namespace Avans.DPAT.Sudoku.Console;
+namespace Avans.DPAT.Sudoku.Console.Controllers;
 
 public class MenuController : IController
 {
@@ -31,7 +31,7 @@ public class MenuController : IController
         }
         else if (key == ConsoleKey.S)
         {
-            if (string.IsNullOrWhiteSpace(_model.SudokuPath))
+            if (!string.IsNullOrWhiteSpace(_model.SudokuPath))
             {
                 try
                 {

@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using Avans.DPAT.Sudoku.Console;
+using Avans.DPAT.Sudoku.Console.Controllers;
 
 Console.OutputEncoding = Encoding.UTF8;
 

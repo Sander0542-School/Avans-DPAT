@@ -1,4 +1,4 @@
-namespace Avans.DPAT.Sudoku.Console;
+namespace Avans.DPAT.Sudoku.Console.Controllers;
 
 public interface IController
 { 
