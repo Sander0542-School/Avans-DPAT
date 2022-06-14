@@ -1,4 +1,5 @@
-﻿using Avans.DPAT.Sudoku.Game.Grid;
+﻿using System.Drawing;
+using Avans.DPAT.Sudoku.Game.Grid;
 using Avans.DPAT.Sudoku.Game.Grid.Common;
 
 namespace Avans.DPAT.Sudoku.Game;
@@ -29,4 +30,12 @@ public class Sudoku
             Cells[cell.Position.Y, cell.Position.X] = cell;
         }
     }
+    
+    //place number on cell
+    public void PlaceNumber(int number, Point point)
+    {
+        var cell = Cells.where(point);
+        cell.SetNumber(number);
+    }
+    
 }

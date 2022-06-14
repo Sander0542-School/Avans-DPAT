@@ -1,26 +1,38 @@
 ﻿using System.Drawing;
 using Avans.DPAT.Sudoku.Console.Builders;
 using Avans.DPAT.Sudoku.Console.Extensions;
+using Avans.DPAT.Sudoku.Console.Models;
 using Pastel;
 
 namespace Avans.DPAT.Sudoku.Console.Views;
 
 public class SudokuView
 {
-    public void Render(Game.Sudoku sudoku)
+    private readonly GameModel _model;
+
+    public SudokuView(GameModel model)
     {
-        var height = sudoku.Height();
-        var width = sudoku.Width();
+        _model = model;
+    }
+    public void Render()
+    {
+        var height = _model.Game.Height();
+        var width = _model.Game.Width();
 
         var builder = new SudokuBufferBuilder(height, width);
         builder.AddRule((cell, value) => {
+            if (cell.Position == _model.Position)
+            {
+                return value.Pastel(Color.Black).PastelBg(Color.DimGray);
+            }
             if (cell.Final)
             {
                 return value.Pastel(Color.Black).PastelBg(Color.Yellow);
             }
+
             return value;
         });
-        builder.AddCells(sudoku.Cells);
+        builder.AddCells(_model.Game.Cells);
 
         var buffer = builder.Build();
 
