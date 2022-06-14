@@ -9,7 +9,7 @@ public class GridCell : IGridComponent, ICell
 
     public int GridId { get; }
 
-    public int? Value { get; }
+    public int? Value { get; set; }
 
     public int? Hint { get; set; } = null;
 
@@ -26,6 +26,16 @@ public class GridCell : IGridComponent, ICell
     public IEnumerable<IGridComponent> ToList()
     {
         return new List<IGridComponent> { this };
+    }
+
+    public bool IsValid(Point point, int number)
+    {
+        return true;
+    }
+
+    public bool Contains(Point point)
+    {
+        return point == Position;
     }
 
     public override bool Equals(object? obj)
@@ -45,6 +55,6 @@ public class GridCell : IGridComponent, ICell
 
     public override string ToString()
     {
-        return $"GridCell({Position.X}, {Position.Y})[{Value}]";
+        return $"GridCell({Position.X},{Position.Y})[{Value}]";
     }
 }

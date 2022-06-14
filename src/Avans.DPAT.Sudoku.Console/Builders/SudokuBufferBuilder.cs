@@ -1,5 +1,5 @@
 ﻿using System.Drawing;
-using Avans.DPAT.Sudoku.Console.Extensions;
+using Avans.DPAT.Sudoku.Game.Extensions;
 using Avans.DPAT.Sudoku.Game.Grid.Common;
 using Pastel;
 
@@ -7,7 +7,7 @@ namespace Avans.DPAT.Sudoku.Console.Builders;
 
 public class SudokuBufferBuilder
 {
-    private const string HorizontalSeparator = "-";
+    private const string HorizontalSeparator = "―";
     private const string VerticalSeparator = "|";
 
     private readonly string[,] _buffer;

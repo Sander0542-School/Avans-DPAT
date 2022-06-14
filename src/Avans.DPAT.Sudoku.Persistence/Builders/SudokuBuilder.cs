@@ -5,12 +5,10 @@ namespace Avans.DPAT.Sudoku.Persistence.Builders;
 public class SudokuBuilder
 {
     private readonly List<GridBuilder> _grids;
-    private readonly List<ICell> _cells;
 
     public SudokuBuilder()
     {
         _grids = new();
-        _cells = new();
     }
 
     public SudokuBuilder AddGrid(GridBuilder grid)
@@ -22,14 +20,10 @@ public class SudokuBuilder
 
     public SudokuBuilder AddSubGrids<T>(Dictionary<T, List<GridBuilder>> subGrids) where T : notnull
     {
-        _grids.AddRange(subGrids.SelectMany(pair => pair.Value));
-
-        return this;
-    }
-
-    public SudokuBuilder AddCell(ICell cell)
-    {
-        _cells.Add(cell);
+        foreach (var builder in subGrids.SelectMany(pair => pair.Value))
+        {
+            AddGrid(builder);
+        }
 
         return this;
     }

@@ -16,8 +16,8 @@ public class SudokuView
     }
     public void Render()
     {
-        var height = _model.Game.Height();
-        var width = _model.Game.Width();
+        var height = _model.Game.Height;
+        var width = _model.Game.Width;
 
         var builder = new SudokuBufferBuilder(height, width);
         builder.AddRule((cell, value) => {
@@ -29,7 +29,6 @@ public class SudokuView
             {
                 return value.Pastel(Color.Black).PastelBg(Color.Yellow);
             }
-
             return value;
         });
         builder.AddCells(_model.Game.Cells);

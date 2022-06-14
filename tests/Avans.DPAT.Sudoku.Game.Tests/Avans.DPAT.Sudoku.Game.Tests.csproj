@@ -25,6 +25,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\src\Avans.DPAT.Sudoku.Game\Avans.DPAT.Sudoku.Game.csproj" />
       <ProjectReference Include="..\..\src\Avans.DPAT.Sudoku.Persistence\Avans.DPAT.Sudoku.Persistence.csproj" />
     </ItemGroup>
 
