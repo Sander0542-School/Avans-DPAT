@@ -13,20 +13,13 @@ public class SudokuView
     {
         _model = model;
     }
+
     public void Render()
     {
         var height = _model.Game.Height;
         var width = _model.Game.Width;
 
-        var builder = new SudokuBufferBuilder(height, width);
-        builder.AddRule((cell, value) => {
-            if (cell.Final)
-            {
-                return value.Pastel(Color.Black).PastelBg(Color.Yellow);
-            }
-            return value;
-        });
-        
+        var builder = new SudokuBufferBuilder(height, width, _model.Game.GetCellDisplay);
         builder.AddRule((cell, value) => {
             if (cell.Position == _model.Position)
             {
@@ -34,7 +27,14 @@ public class SudokuView
             }
             return value;
         });
-        
+        builder.AddRule((cell, value) => {
+            if (cell.Final)
+            {
+                return value.Pastel(Color.Black).PastelBg(Color.Yellow);
+            }
+            return value;
+        });
+
         builder.AddCells(_model.Game.Cells);
 
         var buffer = builder.Build();

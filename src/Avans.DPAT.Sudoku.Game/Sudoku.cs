@@ -2,10 +2,11 @@
 using Avans.DPAT.Sudoku.Game.Grid;
 using Avans.DPAT.Sudoku.Game.Grid.Common;
 using Avans.DPAT.Sudoku.Game.Solvers;
+using Avans.DPAT.Sudoku.Game.States;
 
 namespace Avans.DPAT.Sudoku.Game;
 
-public class Sudoku
+public class Sudoku : IState
 {
     public readonly int Numbers;
     public readonly int Length;
@@ -14,8 +15,12 @@ public class Sudoku
 
     public readonly ICell[,] Cells;
 
+    public IState State { get; private set; }
+
     public Sudoku(int numbers, int length, GridComposite grid)
     {
+        State = new NormalState(this);
+
         Numbers = numbers;
         Length = length;
         Grid = grid;
@@ -36,16 +41,29 @@ public class Sudoku
 
     public int Width => Cells.GetLength(1);
 
+    public bool Finished => false;
+
     public void Accept(ISolver solver)
     {
         solver.Visit(this);
     }
-    
-    //place number on cell
-    public void PlaceNumber(int number, Point point)
+
+    public void PlaceNumber(Point point, int? number)
     {
-        var cell = Cells.where(point);
-        cell.SetNumber(number);
+        State.PlaceNumber(point, number);
     }
-    
+
+    public int? GetCellDisplay(ICell cell)
+    {
+        return State.GetCellDisplay(cell);
+    }
+
+    public void ChangeState(IState state)
+    {
+        State = state;
+    }
+
+    public void Validate()
+    {
+    }
 }

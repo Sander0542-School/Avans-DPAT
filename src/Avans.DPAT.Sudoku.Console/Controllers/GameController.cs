@@ -1,6 +1,9 @@
 using System.Drawing;
 using Avans.DPAT.Sudoku.Console.Models;
 using Avans.DPAT.Sudoku.Console.Views;
+using Avans.DPAT.Sudoku.Game.Exceptions;
+using Avans.DPAT.Sudoku.Game.Solvers;
+using Avans.DPAT.Sudoku.Game.States;
 
 namespace Avans.DPAT.Sudoku.Console;
 
@@ -11,64 +14,66 @@ public class GameController
 
     public GameController(GameModel model)
     {
-        _view = new SudokuView(model);
+        _view = new(model);
         _model = model;
-        
+
         _view.Render();
     }
-    
+
+    public void Start()
+    {
+        while (_model.Game.Finished == false)
+        {
+            Update(System.Console.ReadKey(true).Key);
+            _view.Render();
+        }
+    }
+
     public void Update(ConsoleKey key)
     {
-        switch (key)
+        if (key == ConsoleKey.H)
         {
-            case ConsoleKey.UpArrow:
-                _model.Move(new Size(0, -1));
-                _view.Render();
-                break;
-            case ConsoleKey.DownArrow:
-                _model.Move(new Size(0, 1));
-                _view.Render();
-                break;
-            case ConsoleKey.LeftArrow:
-                _model.Move(new Size(-1, 0));
-                _view.Render();
-                break;
-            case ConsoleKey.RightArrow:
-                _model.Move(new Size(1, 0));
-                _view.Render();
-                break;
-            // case ConsoleKey.Enter:
-            //     _model.SetValue();
-            //     break;
-            //     case ConsoleKey.Backspace:
-            //         _model.SwitchEditMode();
-            //         break;
-            //     case ConsoleKey.Spacebar:
-            //         _model.SwitchEditMode();
-            //         break;
-            //     // Placing number
-            case ConsoleKey.D1:
-            case ConsoleKey.D2:
-            case ConsoleKey.D3:
-            case ConsoleKey.D4:
-            case ConsoleKey.D5:
-            case ConsoleKey.D6:
-            case ConsoleKey.D7:
-            case ConsoleKey.D8:
-            case ConsoleKey.D9:
+            _model.Game.ChangeState(new HintState(_model.Game));
+        }
+        else if (key == ConsoleKey.N)
+        {
+            _model.Game.ChangeState(new NormalState(_model.Game));
+        }
+        else if (key == ConsoleKey.S)
+        {
+            _model.Game.Accept(new BacktrackingSolver());
+        }
+        else if (key == ConsoleKey.C)
+        {
+            _model.Game.Validate();
+        }
+        else if (key == ConsoleKey.UpArrow)
+        {
+            _model.Move(new(0, -1));
+        }
+        else if (key == ConsoleKey.DownArrow)
+        {
+            _model.Move(new(0, 1));
+        }
+        else if (key == ConsoleKey.LeftArrow)
+        {
+            _model.Move(new(-1, 0));
+        }
+        else if (key == ConsoleKey.RightArrow)
+        {
+            _model.Move(new(1, 0));
+        }
+        else if (key is >= ConsoleKey.D1 and <= ConsoleKey.D9)
+        {
+            var number = (int)key - (int)ConsoleKey.D0;
+            try
             {
-                try
-                {
-                    _model.Game.PlaceNumber(_model.Position, (int) key - (int) ConsoleKey.D0);
-                }
-                catch (Exception ex)
-                {
-                    _model.ErrorMessage = ex.Message;
-                }
-                break;
+                _model.Game.PlaceNumber(_model.Position, number);
             }
-            default: return;
-            // }
+            catch (SudokuPlacementException e)
+            {
+                _model.ErrorMessage = e.Message;
+            }
         }
     }
 }

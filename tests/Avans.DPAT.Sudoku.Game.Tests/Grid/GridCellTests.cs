@@ -10,7 +10,7 @@ public class GridCellTests
     public void Test_Constructor()
     {
         var cell = new GridCell(new(5, 8), 4, 8);
-        Assert.Equal(new Point(5, 8), cell.Position);
+        Assert.Equal(new(5, 8), cell.Position);
         Assert.Equal(4, cell.GridId);
         Assert.Equal(8, cell.Value);
         Assert.True(cell.Final);
