@@ -8,7 +8,7 @@ public interface ICell
 
     public int GridId { get; }
 
-    public int? Value { get; }
+    public int? Value { get; set; }
 
     public bool Final { get; }
 

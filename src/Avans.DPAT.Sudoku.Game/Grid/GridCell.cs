@@ -9,7 +9,7 @@ public class GridCell : IGridComponent, ICell
 
     public int GridId { get; }
 
-    public int? Value { get; }
+    public int? Value { get; set; }
 
     public int? Hint { get; set; } = null;
 
