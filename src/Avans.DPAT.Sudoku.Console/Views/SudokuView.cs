@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using Avans.DPAT.Sudoku.Console.Builders;
-using Avans.DPAT.Sudoku.Console.Extensions;
 using Avans.DPAT.Sudoku.Console.Models;
 using Pastel;
 
@@ -21,16 +20,21 @@ public class SudokuView
 
         var builder = new SudokuBufferBuilder(height, width);
         builder.AddRule((cell, value) => {
-            if (cell.Position == _model.Position)
-            {
-                return value.Pastel(Color.Black).PastelBg(Color.DimGray);
-            }
             if (cell.Final)
             {
                 return value.Pastel(Color.Black).PastelBg(Color.Yellow);
             }
             return value;
         });
+        
+        builder.AddRule((cell, value) => {
+            if (cell.Position == _model.Position)
+            {
+                return value.Pastel(Color.Black).PastelBg(Color.DimGray);
+            }
+            return value;
+        });
+        
         builder.AddCells(_model.Game.Cells);
 
         var buffer = builder.Build();

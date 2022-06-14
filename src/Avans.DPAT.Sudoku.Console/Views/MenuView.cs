@@ -1,7 +1,5 @@
 ﻿using System.Drawing;
 using System.Text;
-using Avans.DPAT.Sudoku.Console.Builders;
-using Avans.DPAT.Sudoku.Console.Extensions;
 using Avans.DPAT.Sudoku.Console.Models;
 using Pastel;
 
@@ -13,7 +11,6 @@ public class MenuView
 
     public MenuView(MenuModel model)
     {
-        System.Console.OutputEncoding = Encoding.UTF8;
         _model = model;
     }
     public void Render()
