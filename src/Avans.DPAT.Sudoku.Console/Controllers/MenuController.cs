@@ -25,9 +25,6 @@ public class MenuController: IController
     {
         switch (key)
         {
-            case ConsoleKey.D: // Toggle display mode
-                _model.SimpleDisplay = !_model.SimpleDisplay;
-                break;
             case ConsoleKey.F: // Change file path
                 _model.SudokuPath = "";
                 _model.ErrorMessage = "";
