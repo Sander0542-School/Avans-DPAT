@@ -1,6 +1,6 @@
 ﻿using Avans.DPAT.Sudoku.Game.Grid.Common;
 
-namespace Avans.DPAT.Sudoku.Console.Extensions;
+namespace Avans.DPAT.Sudoku.Game.Extensions;
 
 public static class CellExtensions
 {
@@ -12,7 +12,7 @@ public static class CellExtensions
         };
         return cells.Get(newPoint);
     }
-    
+
     public static ICell? Right(this ICell cell, ICell[,] cells)
     {
         var newPoint = cell.Position with
