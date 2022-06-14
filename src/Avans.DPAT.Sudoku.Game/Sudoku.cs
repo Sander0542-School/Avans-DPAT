@@ -41,8 +41,6 @@ public class Sudoku : IState
 
     public int Width => Cells.GetLength(1);
 
-    public bool Finished => false;
-
     public void Accept(ISolver solver)
     {
         solver.Visit(this);
@@ -63,7 +61,27 @@ public class Sudoku : IState
         State = state;
     }
 
-    public void Validate()
+    public bool Validate()
     {
+        var result = true;
+        foreach (var cell in Cells)
+        {
+            cell.Valid = true;
+            if (cell.Final || !cell.Value.HasValue || Grid.IsValid(cell.Position, cell.Value.Value)) continue;
+
+            result = false;
+            cell.Valid = false;
+        }
+        return result;
+    }
+
+    public bool IsFilled()
+    {
+        var result = true;
+        foreach (var cell in Cells)
+        {
+            if (!cell.Value.HasValue) result = false;
+        }
+        return result;
     }
 }

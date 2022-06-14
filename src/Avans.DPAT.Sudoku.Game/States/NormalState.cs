@@ -23,7 +23,8 @@ public class NormalState : IState
         if (cell == null) throw new SudokuPlacementException("Cell does not exist");
         if (cell.Final) throw new SudokuPlacementException("Cannot place number in final cell");
 
-        cell.Value = number;
+        cell.Value = cell.Value == number ? null : number;
+        cell.Valid = true;
     }
 
     public int? GetCellDisplay(ICell cell)

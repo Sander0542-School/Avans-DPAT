@@ -9,13 +9,14 @@ public class MenuController : IController
 {
     private readonly MenuView _view;
     private readonly MenuModel _model;
-    private readonly FileSystemFileLoader _gameLoader;
+    
+    private readonly FileSystemFileLoader _fileLoader;
 
     public MenuController()
     {
-        _model = new MenuModel();
-        _view = new MenuView(_model);
-        _gameLoader = new FileSystemFileLoader();
+        _model = new();
+        _view = new(_model);
+        _fileLoader = new();
 
         _view.Render();
     }
@@ -23,27 +24,25 @@ public class MenuController : IController
 
     public void Update(ConsoleKey key)
     {
-        switch (key)
+        if (key == ConsoleKey.F)
         {
-            case ConsoleKey.F:// Change file path
-                _model.SudokuPath = "";
-                _model.ErrorMessage = "";
-                break;
-            case ConsoleKey.S:// Start game (if file is set)
-                if (_model.SudokuPath != null)
+            _model.SudokuPath = "";
+            _model.ErrorMessage = "";
+        }
+        else if (key == ConsoleKey.S)
+        {
+            if (string.IsNullOrWhiteSpace(_model.SudokuPath))
+            {
+                try
                 {
-                    try
-                    {
-                        CreateNewGame();
-                        return;
-                    }
-                    catch (Exception ex)
-                    {
-                        _model.ErrorMessage = ex.Message;
-                    }
+                    CreateNewGame();
+                    return;
                 }
-                break;
-            default: return;
+                catch (Exception ex)
+                {
+                    _model.ErrorMessage = ex.Message;
+                }
+            }
         }
 
         _view.Render();
@@ -51,10 +50,9 @@ public class MenuController : IController
 
     private void CreateNewGame()
     {
-        var file = _gameLoader.Load(_model.SudokuPath);
+        var file = _fileLoader.Load(_model.SudokuPath);
 
-        var factory = new SudokuFactory();
-        var sudoku = factory.CreateSudoku(file);
+        var sudoku = new SudokuFactory().CreateSudoku(file);
 
         var controller = new GameController(new(sudoku));
 

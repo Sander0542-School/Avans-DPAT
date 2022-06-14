@@ -21,12 +21,13 @@ public class HintState : IState
         var cell = _sudoku.Cells.Get(point);
 
         if (cell == null) throw new SudokuPlacementException("Cell does not exist");
+        if (cell.Final) throw new SudokuPlacementException("Cannot place hint in final cell");
 
-        cell.Hint = number;
+        cell.Hint = cell.Hint == number ? null : number;
     }
 
     public int? GetCellDisplay(ICell cell)
     {
-        return cell.Hint;
+        return cell.Final ? cell.Value : cell.Hint;
     }
 }

@@ -22,11 +22,15 @@ public class GameController
 
     public void Start()
     {
-        while (_model.Game.Finished == false)
+        while (_model.Game.IsFilled() == false)
         {
             Update(System.Console.ReadKey(true).Key);
             _view.Render();
         }
+
+        System.Console.WriteLine(_model.Game.Validate() ? "You win!" : "You lose!");
+        System.Console.WriteLine("Press any key to exit...");
+        System.Console.ReadKey();
     }
 
     public void Update(ConsoleKey key)
