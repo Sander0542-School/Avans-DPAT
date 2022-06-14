@@ -13,30 +13,35 @@ public class MenuView
     {
         _model = model;
     }
+
     public void Render()
     {
-        System.Console.Clear();
-        System.Console.WriteLine("Welkom bij de beste Sudoku.\n");
-
+        RenderHeader();
         if (_model.SudokuPath == "")
         {
-            System.Console.Write("Vul file path in: ");
+            System.Console.Write("File Path: ");
             _model.SudokuPath = System.Console.ReadLine();
         }
-        System.Console.Clear();
-        System.Console.WriteLine("Welkom bij de beste Sudoku.\n");
-            
-        System.Console.WriteLine("Instellingen:");
-        System.Console.WriteLine($"1) Weergave: {(_model.SimpleDisplay ? "Simple" : "Advanced")}");
-        System.Console.WriteLine($"2) File Path: '{_model.SudokuPath ?? "None"}'");
+
+        RenderHeader();
+        System.Console.WriteLine("Settings:");
+        System.Console.WriteLine($"File: {_model.SudokuPath}");
         if (_model.ErrorMessage != "")
         {
+            System.Console.WriteLine();
             System.Console.WriteLine(_model.ErrorMessage.Pastel(Color.OrangeRed));
         }
-            
-        System.Console.WriteLine("Opties:");
-        System.Console.WriteLine(" - To toggle the display mode press 'D'");
-        System.Console.WriteLine(" - To change the file path mode press 'F'");
-        System.Console.WriteLine(" - Press 'S' to start the game");
+
+        System.Console.WriteLine();
+        System.Console.WriteLine("Keybindings:");
+        System.Console.WriteLine("F: Change file path");
+        System.Console.WriteLine("S: Start game");
+    }
+
+    private static void RenderHeader()
+    {
+        System.Console.Clear();
+        System.Console.WriteLine("Sudoku App");
+        System.Console.WriteLine();
     }
 }
