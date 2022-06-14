@@ -1,6 +1,4 @@
-﻿using Avans.DPAT.Sudoku.Game.Grid.Common;
-
-namespace Avans.DPAT.Sudoku.Persistence.Builders;
+﻿namespace Avans.DPAT.Sudoku.Persistence.Builders;
 
 public class SudokuBuilder
 {

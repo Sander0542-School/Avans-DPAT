@@ -12,11 +12,14 @@ public class SudokuBufferBuilder
 
     private readonly string[,] _buffer;
     private readonly List<Func<ICell, string, string>> _rules;
+    private readonly Func<ICell, int?> _cellValueFunc;
 
-    public SudokuBufferBuilder(int height, int width, int offset = 2)
+    public SudokuBufferBuilder(int height, int width, Func<ICell, int?> cellValueFunc, int offset = 2)
     {
         var bufferHeight = height * offset - 1;
         var bufferWidth = width * offset - 1;
+        
+        _cellValueFunc = cellValueFunc;
 
         _buffer = new string[bufferHeight, bufferWidth];
         _rules = new();
@@ -33,7 +36,8 @@ public class SudokuBufferBuilder
     {
         var bufferPoint = new Point(cell.Position.X * 2, cell.Position.Y * 2);
 
-        var value = cell.Value.HasValue ? cell.Value.Value.ToString() : ".";
+        var cellProperty = _cellValueFunc.Invoke(cell);
+        var value = cellProperty.HasValue ? cellProperty.Value.ToString() : ".";
 
         value = _rules.Aggregate(value, (value1, rule) => rule(cell, value1));
         _buffer.Set(bufferPoint.X, bufferPoint.Y, value);

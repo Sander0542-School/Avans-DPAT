@@ -1,10 +1,12 @@
-﻿using Avans.DPAT.Sudoku.Game.Grid;
+﻿using System.Drawing;
+using Avans.DPAT.Sudoku.Game.Grid;
 using Avans.DPAT.Sudoku.Game.Grid.Common;
 using Avans.DPAT.Sudoku.Game.Solvers;
+using Avans.DPAT.Sudoku.Game.States;
 
 namespace Avans.DPAT.Sudoku.Game;
 
-public class Sudoku
+public class Sudoku : IState
 {
     public readonly int Numbers;
     public readonly int Length;
@@ -13,8 +15,12 @@ public class Sudoku
 
     public readonly ICell[,] Cells;
 
+    public IState State { get; private set; }
+
     public Sudoku(int numbers, int length, GridComposite grid)
     {
+        State = new NormalState(this);
+
         Numbers = numbers;
         Length = length;
         Grid = grid;
@@ -38,5 +44,44 @@ public class Sudoku
     public void Accept(ISolver solver)
     {
         solver.Visit(this);
+    }
+
+    public void PlaceNumber(Point point, int? number)
+    {
+        State.PlaceNumber(point, number);
+    }
+
+    public int? GetCellDisplay(ICell cell)
+    {
+        return State.GetCellDisplay(cell);
+    }
+
+    public void ChangeState(IState state)
+    {
+        State = state;
+    }
+
+    public bool Validate()
+    {
+        var result = true;
+        foreach (var cell in Cells)
+        {
+            cell.Valid = true;
+            if (cell.Final || !cell.Value.HasValue || Grid.IsValid(cell.Position, cell.Value.Value)) continue;
+
+            result = false;
+            cell.Valid = false;
+        }
+        return result;
+    }
+
+    public bool IsFilled()
+    {
+        var result = true;
+        foreach (var cell in Cells)
+        {
+            if (!cell.Value.HasValue) result = false;
+        }
+        return result;
     }
 }

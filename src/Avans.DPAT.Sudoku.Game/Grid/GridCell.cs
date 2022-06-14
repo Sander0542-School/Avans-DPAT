@@ -11,9 +11,11 @@ public class GridCell : IGridComponent, ICell
 
     public int? Value { get; set; }
 
-    public int? Hint { get; set; } = null;
+    public int? Hint { get; set; }
 
     public bool Final { get; }
+
+    public bool Valid { get; set; }
 
     public GridCell(Point location, int gridId, int value)
     {
@@ -21,6 +23,7 @@ public class GridCell : IGridComponent, ICell
         GridId = gridId;
         Value = value == 0 ? null : value;
         Final = value != 0;
+        Valid = true;
     }
 
     public IEnumerable<IGridComponent> ToList()
