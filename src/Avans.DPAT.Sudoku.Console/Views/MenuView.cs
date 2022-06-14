@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using System.Text;
 using Avans.DPAT.Sudoku.Console.Models;
 using Pastel;
 

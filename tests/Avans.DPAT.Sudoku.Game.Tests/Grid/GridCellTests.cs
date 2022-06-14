@@ -2,7 +2,7 @@
 using Avans.DPAT.Sudoku.Game.Grid;
 using Xunit;
 
-namespace Avans.DPAT.Sudoku.Game.Tests;
+namespace Avans.DPAT.Sudoku.Game.Tests.Grid;
 
 public class GridCellTests
 {

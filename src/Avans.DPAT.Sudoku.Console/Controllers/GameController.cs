@@ -5,7 +5,7 @@ using Avans.DPAT.Sudoku.Game.Exceptions;
 using Avans.DPAT.Sudoku.Game.Solvers;
 using Avans.DPAT.Sudoku.Game.States;
 
-namespace Avans.DPAT.Sudoku.Console;
+namespace Avans.DPAT.Sudoku.Console.Controllers;
 
 public class GameController
 {
