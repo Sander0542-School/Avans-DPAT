@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using Avans.DPAT.Sudoku.Console.Builders;
-using Avans.DPAT.Sudoku.Console.Extensions;
 using Pastel;
 
 namespace Avans.DPAT.Sudoku.Console.Views;
@@ -9,8 +8,8 @@ public class SudokuView
 {
     public void Render(Game.Sudoku sudoku)
     {
-        var height = sudoku.Height();
-        var width = sudoku.Width();
+        var height = sudoku.Height;
+        var width = sudoku.Width;
 
         var builder = new SudokuBufferBuilder(height, width);
         builder.AddRule((cell, value) => {

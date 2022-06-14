@@ -31,6 +31,10 @@ public class Sudoku
         }
     }
 
+    public int Height => Cells.GetLength(0);
+
+    public int Width => Cells.GetLength(1);
+
     public void Accept(ISolver solver)
     {
         solver.Visit(this);
