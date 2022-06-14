@@ -1,5 +1,5 @@
 ﻿using System.Drawing;
-using Avans.DPAT.Sudoku.Console.Extensions;
+using Avans.DPAT.Sudoku.Game.Extensions;
 using Avans.DPAT.Sudoku.Game.Grid.Common;
 using Pastel;
 
