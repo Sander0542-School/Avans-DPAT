@@ -1,5 +1,6 @@
 ﻿using Avans.DPAT.Sudoku.Game.Grid;
 using Avans.DPAT.Sudoku.Game.Grid.Common;
+using Avans.DPAT.Sudoku.Game.Solvers;
 
 namespace Avans.DPAT.Sudoku.Game;
 
@@ -28,5 +29,10 @@ public class Sudoku
         {
             Cells[cell.Position.Y, cell.Position.X] = cell;
         }
+    }
+
+    public void Accept(ISolver solver)
+    {
+        solver.Visit(this);
     }
 }
