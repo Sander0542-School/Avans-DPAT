@@ -46,5 +46,22 @@ public class GameController
 
     private void LoadCommands()
     {
+        _commands.Add(ConsoleKey.N, new NormalStateCommand());
+        _commands.Add(ConsoleKey.H, new HintStateCommand());
+        _commands.Add(ConsoleKey.S, new SolveCommand(new BacktrackingSolver()));
+        _commands.Add(ConsoleKey.C, new CheckCommand());
+        _commands.Add(ConsoleKey.UpArrow, new MoveCommand(new(0, -1)));
+        _commands.Add(ConsoleKey.DownArrow, new MoveCommand(new(0, 1)));
+        _commands.Add(ConsoleKey.LeftArrow, new MoveCommand(new(-1, 0)));
+        _commands.Add(ConsoleKey.RightArrow, new MoveCommand(new(1, 0)));
+        _commands.Add(ConsoleKey.D1, new PlaceCommand(1));
+        _commands.Add(ConsoleKey.D2, new PlaceCommand(2));
+        _commands.Add(ConsoleKey.D3, new PlaceCommand(3));
+        _commands.Add(ConsoleKey.D4, new PlaceCommand(4));
+        _commands.Add(ConsoleKey.D5, new PlaceCommand(5));
+        _commands.Add(ConsoleKey.D6, new PlaceCommand(6));
+        _commands.Add(ConsoleKey.D7, new PlaceCommand(7));
+        _commands.Add(ConsoleKey.D8, new PlaceCommand(8));
+        _commands.Add(ConsoleKey.D9, new PlaceCommand(9));
     }
 }
